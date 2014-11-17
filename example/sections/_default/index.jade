@@ -11,14 +11,18 @@ html(ng-app='example')
         ul.title-area
             li.name
                 h1
-                    a(href="#/") Etusivu
+                    a(ui-sref="main") Etusivu
             li.toggle-topbar.menu-icon
-                a(href="#")
+                a(ui-sref="main")
                     span Menu
         section.top-bar-section
             ul.left
                 li
                     a(ui-sref="add") Lisää
+                li
+                    a(ui-sref="list") Listaa
+                li
+                    a(ui-sref="bigdata") Big Data
     .container
         div(ng-view)
 

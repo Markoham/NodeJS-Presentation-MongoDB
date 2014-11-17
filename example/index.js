@@ -40,6 +40,9 @@ sections(app);
 app.get('/', function (req, res) {
   res.render('_default/index');
 });
+app.get('/partials/:page', function(req,res) {
+    res.render(req.params.page);
+});
 app.get(/\/html\/([\w\/]+)\.html/, function (req, res) {
   var name = req.params[0];
   res.render(name);

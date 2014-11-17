@@ -8,6 +8,7 @@ var app = angular.module('example', [
     'ngResource',
     require('angular-ui-router')
     ]);
+
 app.config(function($stateProvider, $urlRouterProvider) {
   //
   // For any unmatched url, redirect to /state1
@@ -17,19 +18,19 @@ app.config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
     .state('main', {
       url: "/",
-      templateUrl: "partials/main.html"
+      templateUrl: "partials/main"
     })
     .state('add', {
       url: "/add",
-      templateUrl: "partials/add.html"
+      templateUrl: "partials/add"
     })
     .state('list', {
       url: "/list",
-      templateUrl: "partials/list.html"
+      templateUrl: "partials/list"
     })
     .state('bigdata', {
       url: "/gigdata",
-      templateUrl: "partials/gigdata.html"
+      templateUrl: "partials/gigdata"
     });
 });
 
