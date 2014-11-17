@@ -1,12 +1,27 @@
-extends layout
+doctype html5
+html(ng-app='example')
+  head
+    meta(charset='utf8')
+    base(href='/')
+    title MongoDB / Mongoose example
+    
+    link(rel='stylesheet', href='/vendor/foundation/css/foundation.css')
+  body
+    nav(data-topbar, role='navigation').top-bar
+        ul.title-area
+            li.name
+                h1
+                    a(href="#/") Etusivu
+            li.toggle-topbar.menu-icon
+                a(href="#")
+                    span Menu
+        section.top-bar-section
+            ul.left
+                li
+                    a(ui-sref="add") Lisää
+    .container
+        div(ng-view)
 
-block body
-  header
-    .navbar
-      .container
-        ul.menu.nav.nav-pills
-          li
-            a(href='#/view1') view1
-  .container
-      div(ng-view)
-
+    script(src='/vendor/jquery/dist/jquery.min.js')
+    script(src='/vendor/foundation/js/foundation.min.js')
+    script(src='/js/app.min.js')

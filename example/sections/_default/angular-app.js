@@ -3,17 +3,34 @@
 var di = require('di');
 var angular = require('angular');
 require('angular-resource');
-require('angular-route');
-require('bootstrap');
-require('angular-bootstrap');
 
 var app = angular.module('example', [
-    'ngRoute',
-    'ui.bootstrap',
-    'ngResource'
+    'ngResource',
+    require('angular-ui-router')
     ]);
-app.config(function ($routeProvider) {
-  $routeProvider.otherwise({redirectTo : '/view1'});
+app.config(function($stateProvider, $urlRouterProvider) {
+  //
+  // For any unmatched url, redirect to /state1
+  $urlRouterProvider.otherwise("/");
+  //
+  // Now set up the states
+  $stateProvider
+    .state('main', {
+      url: "/",
+      templateUrl: "partials/main.html"
+    })
+    .state('add', {
+      url: "/add",
+      templateUrl: "partials/add.html"
+    })
+    .state('list', {
+      url: "/list",
+      templateUrl: "partials/list.html"
+    })
+    .state('bigdata', {
+      url: "/gigdata",
+      templateUrl: "partials/gigdata.html"
+    });
 });
 
 var uiModules = {

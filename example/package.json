@@ -12,15 +12,15 @@
     "browserify-shim": "^3.3.1"
   },
   "scripts": {
-    "test": "grunt"
+    "test": "grunt",
+    "start": "grunt && node index.js"
   },
   "browser": {
     "jquery": "./bower_components/jquery/dist/jquery.js",
     "angular": "./bower_components/angular/angular.js",
-    "bootstrap": "./bower_components/bootstrap/dist/js/bootstrap.js",
+    "foundation": "./bower_components/foundation/js/foundation.js",
     "angular-resource": "./bower_components/angular-resource/angular-resource.js",
-    "angular-route": "./bower_components/angular-route/angular-route.js",
-    "angular-bootstrap": "./bower_components/angular-bootstrap/ui-bootstrap-tpls.js"
+    "angular-ui-router": "./bower_components/angular-ui-router/release/angular-ui-router.js"
   },
   "browserify-shim": {
       "jquery": "$",
@@ -34,7 +34,7 @@
       "angular-resource": {
           "depends": [ "angular:angular" ]
       },
-      "angular-route": {
+      "angular-ui-router": {
           "depends": [ "angular:angular" ]
       },
       "bootstrap": {
