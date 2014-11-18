@@ -13,4 +13,4 @@ var dataSchema = mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('data', dataSchema);
+module.exports = mongoose.model('tweets', dataSchema);
