@@ -1,0 +1,62 @@
+<div class="row">
+    <div class="small-12 small-centered columns">
+        <h2><i class="fa fa-search"></i> Haku</h2>
+        <div class="row collapse">
+            <div class="small-2 medium-1 columns">
+                <span class="prefix">Etsi: </span>
+            </div>
+            <div class="small-10 medium-11 columns">
+                <input type="text" id="searchbar" name="search" ng-model="q" placeholder="Hakusana" />
+            </div>
+        </div>
+        <div class="pagination-centered">
+            <ul class="pagination" ng-hide="(totalPage.length <= 0)">
+                <li class="arrow" ng-class="currentPage <= 1 ? 'unavailable' : ''"><a ng-click="setPage(1)">Ensimmäinen</a></li>
+                <li class="arrow" ng-class="currentPage <= 1 ? 'unavailable' : ''"><a ng-click="setPage(currentPage-1)">&laquo;</a></li>
+                <li ng-if="currentPage > (maxSize/2)+1"><a ng-click="setPage(currentPage-10)">...</a></li>
+                <li ng-repeat="i in totalPage | limitTo: (currentPage + (currentPage < (maxSize/2) ? (maxSize - currentPage) : (maxSize/2))) | limitTo: -maxSize" ng-class="i == currentPage ? 'current' : ''"><a ng-click="setPage(i)">{{i}}</a></li>
+                <li ng-if="currentPage+(maxSize/2) < totalPage.length"><a ng-click="setPage(currentPage+10)">...</a></li>
+                <li class="arrow" ng-class="currentPage >= totalPage.length ? 'unavailable' : ''"><a ng-click="setPage(currentPage+1)">&raquo;</a></li>
+                <li class="arrow" ng-class="currentPage >= totalPage.length ? 'unavailable' : ''"><a ng-click="setPage(totalPage.length)">Viimeinen</a></li>
+            </ul>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th width="200">
+                        <a ng-click="predicate = 'yritys.asiakasnumero'; reverse=!reverse">Asiakasnumero <i class="fa" ng-class="(predicate == 'yritys.asiakasnumero' ? (reverse ? 'fa-caret-up' : 'fa-caret-down') : '')"></i></a>
+                    </th>
+                    <th><a ng-click="predicate = (predicate == 'yritys.ytunnus' ? '-yritys.ytunnus' : 'yritys.ytunnus'); reverse=false">Y-Tunnus <i class="fa" ng-class="(predicate == 'yritys.ytunnus' ? 'fa-caret-down' : (predicate == '-yritys.ytunnus' ? 'fa-caret-up' : ''))"></i></a></th>
+                    <th width="300"><a ng-click="predicate = (predicate == 'yritys.nimi' ? '-yritys.nimi' : 'yritys.nimi'); reverse=false">Nimi <i class="fa" ng-class="(predicate == 'yritys.nimi' ? 'fa-caret-down' : (predicate == '-yritys.nimi' ? 'fa-caret-up' : ''))"></i></a></th>
+                    <th><a ng-click="predicate = (predicate == 'kasittelija' ? '-kasittelija' : 'kasittelija'); reverse=false">Käsittelijä <i class="fa" ng-class="(predicate == 'kasittelija' ? 'fa-caret-down' : (predicate == '-kasittelija' ? 'fa-caret-up' : ''))"></i></a></th>
+                    <th><a ng-click="predicate = (predicate == 'myyja' ? '-myyja' : 'myyja'); reverse=false">Myyjä <i class="fa" ng-class="(predicate == 'myyja' ? 'fa-caret-down' : (predicate == '-myyja' ? 'fa-caret-up' : ''))"></i></a></th>
+                    <th>Info</th>
+                    <%if (user.admin) { %>
+                    <th>Muokkaa</th>
+                    <% } %>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="company in companies | filter: q | orderBy:predicate:reverse | limitTo: 5*currentPage | limitTo: limit" ng-class="{alert: compare(company.takauksenvoimassaolo, today)}">
+                    <td>{{company.yritys.asiakasnumero}}</td>
+                    <td>{{company.yritys.ytunnus}}</td>
+                    <td>{{company.yritys.nimi}}</td>
+                    <td>{{company.kasittelija}}</td>
+                    <td>{{company.myyja}}</td>
+                    <td><a href="#/company/{{company._id}}" class="button small"><i class="fa fa-info"></i></a></td>
+                    <%if (user.admin) { %>
+                    <td><a href="#/company/edit/{{company._id}}" class="button small"><i class="fa fa-edit"></i></a></td>
+                    <% } %>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="row">
+    <hr />
+    <div class="small-12 small-centered columns">
+        <div class="clearfix">
+            <a ng-click="prevPage()" class="right button small"><i class="fa fa-arrow-left"></i> Taikaisin</a>
+        </div>
+    </div>
+</div>

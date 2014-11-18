@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" ng-app='crmApp'>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Yritysrekisteri</title>
+        <link rel="stylesheet" href="/stylesheets/foundation/foundation.min.css" />
+        <link rel="stylesheet" href="/stylesheets/font-awesome.min.css" />
+        <link rel="stylesheet" href="/stylesheets/pikaday.css" />
+        <script src="/bower_components/angular/angular.js"></script>
+        <script src="/bower_components/angular-foundation/mm-foundation-tpls.min.js"></script>
+        <script src="/bower_components/angular-route/angular-route.min.js"></script>
+        <script src="/javascripts/moment.min.js"></script>
+        <script src="/javascripts/pikaday.js"></script>
+        <script src="/javascripts/angular-pikaday.js"></script>
+        <script src="/javascripts/controllers/indexCtrl.js"></script>
+        <script src="/javascripts/controllers/companyCtrl.js"></script>
+        <script src="/javascripts/controllers/addCompanyCtrl.js"></script>
+        <script src="/javascripts/controllers/editCompanyCtrl.js"></script>
+        <script src="/javascripts/controllers/removeCompanyCtrl.js"></script>
+        <script src="/javascripts/controllers/searchCompanyCtrl.js"></script>
+        <script src="/javascripts/app.js"></script>
+        <link rel="stylesheet" href="/stylesheets/style.css" />
+    </head>
+    <body>
+        <div class="row">
+            <div class="medium-12 medium-centered columns">
+                <div class="clearfix">
+                    <div class="right">
+                        <ul class="button-group">
+                            <%if (user.admin) { %>
+                            <li><a class="button tiny" href="#/company/add"><i class="fa fa-plus"></i> Lisää yritys</a></li>
+                            <% } %>
+                            <li><a class="button tiny" href="/logout"><i class="fa fa-sign-out"></i> Kirjaudu ulos</a></li>
+                        </ul>
+                    </div>
+                    <h1 class="left">Yritysrekisteri</h1>
+                </div>
+            </div>
+        </div>
+        <div ng-view></div>
+    </body>
+</html>

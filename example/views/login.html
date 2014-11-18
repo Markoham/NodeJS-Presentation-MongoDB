@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" ng-app='crmApp'>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Yritysrekisteri</title>
+        <link rel="stylesheet" href="/stylesheets/foundation/foundation.min.css" />
+        <link rel="stylesheet" href="/stylesheets/font-awesome.min.css" />
+        <link rel="stylesheet" href="/stylesheets/style.css" />
+    </head>
+    <body>
+        <div class="row">
+            <div class="medium-6 medium-centered columns">
+                <div class="content">
+                    <h3 class="white">Tervetuloa!</h3>
+                    <% if (message.length > 0) { %>
+                        <div class="alert-box alert"><%= message %></div>
+                    <% } %>
+                    <form method="post">
+                        <div class="row collapse">
+                            <div class="small-2 columns">
+                                <span class="prefix"><i class="fa fa-user fa-2x fa-fw"></i></span>
+                            </div>
+                            <div class="small-10 columns">
+                                <input type="text" name="username" placeholder="Käyttäjätunnus" required />
+                            </div>
+                        </div>
+                        <div class="row collapse">
+                            <div class="small-2 columns">
+                                <span class="prefix"><i class="fa fa-key fa-2x fa-fw"></i></span>
+                            </div>
+                            <div class="small-10 columns">
+                                <input type="password" name="password" placeholder="Salasana" required />
+                            </div>
+                        </div>
+                        <button type="submit" ><i class="fa fa-sign-in"></i> Kirjaudu sisään</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

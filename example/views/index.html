@@ -1,0 +1,94 @@
+<div class="row">
+    <div class="medium-12 medium-centered columns">
+        <div class="row">
+            <div class="medium-8 columns">
+                <h2>Etsi</h2>
+                <form ng-submit="search('asiakasnumero')">
+                    <div class="row collapse">
+                        <div class="small-3 medium-3 columns">
+                            <span class="prefix">Asiakasnumero </span>
+                        </div>
+                        <div class="small-7 medium-7 columns">
+                            <input type="text" class="searchbar" name="search" placeholder="Hakusana" ng-model="sAsiakasnumero" />
+                        </div>
+                        <div class="small-2 medium-2 columns">
+                            <button type="submit" class="button postfix"><i class="fa fa-search"></i> Hae</button>
+                        </div>
+                    </div>
+                </form>
+                
+                <form ng-submit="search('yrityksennimi')">
+                    <div class="row collapse">
+                        <div class="small-3 medium-3 columns">
+                            <span class="prefix">Yrityksen nimi </span>
+                        </div>
+                        <div class="small-7 medium-7 columns">
+                            <input type="text" class="searchbar" name="search" placeholder="Hakusana" ng-model="sYrityksennimi" />
+                        </div>
+                        <div class="small-2 medium-2 columns">
+                            <button type="submit" class="button postfix"><i class="fa fa-search"></i> Hae</button>
+                        </div>
+                    </div>
+                </form>
+                
+                <form ng-submit="search('ytunnus')">
+                    <div class="row collapse">
+                        <div class="small-3 medium-3 columns">
+                            <span class="prefix">Y-Tunnus </span>
+                        </div>
+                        <div class="small-7 medium-7 columns">
+                            <input type="text" class="searchbar" name="search" placeholder="Hakusana" ng-model="sYTunnus" />
+                        </div>
+                        <div class="small-2 medium-2 columns">
+                            <button type="submit" class="button postfix"><i class="fa fa-search"></i> Hae</button>
+                        </div>
+                    </div>
+                </form>
+                
+                <form ng-submit="search('kasittelija')">
+                    <div class="row collapse">
+                        <div class="small-3 medium-3 columns">
+                            <span class="prefix">Käsittelijä </span>
+                        </div>
+                        <div class="small-7 medium-7 columns">
+                            <input type="text" class="searchbar" name="search" placeholder="Hakusana" ng-model="sKasittelija" />
+                        </div>
+                        <div class="small-2 medium-2 columns">
+                            <button type="submit" class="button postfix"><i class="fa fa-search"></i> Hae</button>
+                        </div>
+                    </div>
+                </form>
+                
+                <form ng-submit="search('myyja')">
+                    <div class="row collapse">
+                        <div class="small-3 medium-3 columns">
+                            <span class="prefix">Myyjä </span>
+                        </div>
+                        <div class="small-7 medium-7 columns">
+                            <input type="text" class="searchbar" name="search" placeholder="Hakusana" ng-model="sMyyja" />
+                        </div>
+                        <div class="small-2 medium-2 columns">
+                            <button type="submit" class="button postfix"><i class="fa fa-search"></i> Hae</button>
+                        </div>
+                    </div>
+                </form>
+                
+                <div class="row">
+                        <div class="small-12 columns">
+                            <a class="button small" href="#/search"><i class="fa fa-search"></i> Hae kaikki</a>
+                            <a class="button small alert" href="#/search/myohassa"><i class="fa fa-search"></i> Vanhentuneet takaukset</a>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="alertPanel" ng-show="showAlert">
+    <div class="row">
+        <div class="medium-8 medium-centered columns">
+            <h1>{{ alertTitle }}</h1>
+            <h3>{{ alertMessage }}</h3>
+            <a ng-click="showAlert = false" class="button small">Sulje</a>
+        </div>
+    </div>
+</div>
