@@ -12,3 +12,5 @@ var dataSchema = mongoose.Schema({
         created_at      : Date
     }
 });
+
+module.exports = mongoose.model('data', dataSchema);
