@@ -44,7 +44,20 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
               }).success(function(data) {
                   if(data.success)
                   {
-                      //$scope.successMessage = data.message;
+                    $http({
+                        method: 'GET',
+                        url: '/api/person',
+                    }).success(function(data) {
+                        if(data.persons)
+                        {
+                            $scope.persons = data.persons;
+                            //$scope.successMessage = data.message;
+                        }
+                        else
+                        {
+                            //$scope.errorMessage = data.message;
+                        }
+                    });
                   }
                   else
                   {
