@@ -3,6 +3,11 @@ body
     background-image: url("/img/bg.png");
 }
 
+.container
+{
+    background-color: #fff;
+}
+
 table
 {
     border-collapse: collapse;

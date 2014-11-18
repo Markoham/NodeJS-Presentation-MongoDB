@@ -18,20 +18,72 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
     .state('list', {
       url: "/list",
       templateUrl: "/view/list",
-      controller: function($scope) {
-        
+      controller: function($scope,$http) {
+        $http({
+            method: 'GET',
+            url: '/api/person',
+        }).success(function(data) {
+            if(data.persons)
+            {
+                $scope.persons = data.persons;
+                //$scope.successMessage = data.message;
+            }
+            else
+            {
+                //$scope.errorMessage = data.message;
+            }
+        });
+          
+          $scope.delete = function(person)
+          {
+              $http({
+                  method: 'DELETE',
+                  url: '/api/person',
+                  data: person,
+                  headers: {'Content-Type': 'application/json'}
+              }).success(function(data) {
+                  if(data.success)
+                  {
+                      //$scope.successMessage = data.message;
+                  }
+                  else
+                  {
+                      //$scope.errorMessage = data.message;
+                  }
+              });
+          }
       }
     })
     .state('add', {
       url: "/add",
       templateUrl: "/view/add",
-      controller: function($scope) {
+      controller: function($scope,$http) {
+          
+          $scope.add = function(person)
+          {
+              $http({
+                  method: 'POST',
+                  url: '/api/person',
+                  data: person,
+                  headers: {'Content-Type': 'application/json'}
+              }).success(function(data) {
+                  if(data.success)
+                  {
+                      
+                      //$scope.successMessage = data.message;
+                  }
+                  else
+                  {
+                      //$scope.errorMessage = data.message;
+                  }
+              });
+          }
       }
     })
     .state('bigdata', {
       url: "/bigdata",
       templateUrl: "/view/bigdata",
-      controller: function($scope) {
+      controller: function($scope,$http) {
       }
     });
 });
