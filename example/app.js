@@ -10,7 +10,14 @@ var bodyParser      = require('body-parser');
 var ejs             = require('ejs');
 
 // Database && Passport
-mongoose.connect('mongodb://localhost/crm');
+//mongoose.connect('mongodb://localhost/crm');
+
+var dbUrl = 'mongodb://kayttaja2:sala2@localhost:27017/data';
+var connection = mongoose.createConnection(dbUrl);
+connection.on('error', console.error.bind(console, 'connection error:'));
+connection.once('open', function () {
+  console.info('connected to database');
+});
 
 app.use(favicon());
 app.use(morgan('dev'));
