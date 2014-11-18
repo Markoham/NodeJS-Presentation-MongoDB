@@ -37,7 +37,7 @@ module.exports = function(app)
         {
             if(err)
                 console.log(err);
-           return res.json({persons: persons}); 
+           return res.json({persons: persons});
         });
     });
 
@@ -45,33 +45,33 @@ module.exports = function(app)
     {
         var person = new Person(req.body);
         console.log(person);
-        
+
         person.save(function(err)
         {
             if(err)
                 return res.json({success: false});
             return res.json({success: true});
         });
-        
+
     });
 
     app.delete('/api/person', function(req, res)
     {
         console.log(req.body);
-        
-        Person.remove(req.body._id, function(err)
+
+        Person.remove(new Person(req.body), function(err)
         {
             if(err)
                 return res.json({success: false});
-            
-            return res.json({success: true}); 
+
+            return res.json({success: true});
         });
-        
+
     });
 
 	app.get('/api/search/:keyword', function(req, res)
     {
-        Data.aggregate( [{ $match : {text: { $regex: 'hello' , $options: 'g'} }}], function (err, result) {
+        Data.aggregate( [{ $match : {text: { $regex: req.params.keyword , $options: 'g'} }}], function (err, result) {
             if(err) {
                 console.log(err);
                 return;
