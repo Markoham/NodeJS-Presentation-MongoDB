@@ -84,6 +84,15 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
       url: "/bigdata",
       templateUrl: "/view/bigdata",
       controller: function($scope,$http) {
+          $scope.search = function(q)
+          {
+              $http({
+                  method: 'GET',
+                  url: '/api/search/' + q
+              }).success(function(data) {
+                  $scope.datas = data.data;
+              });
+          }
       }
     });
 });

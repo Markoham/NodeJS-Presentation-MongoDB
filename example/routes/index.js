@@ -51,6 +51,13 @@ module.exports = function(app)
 
 	app.get('/api/search/:keyword', function(req, res)
 	{
+        console.log("big data");
+        console.log(req.body);
+        res.json({data: [
+            {text:"jotain1", user: { name: "a", screen_name: "f", location: "e", followers_count: 5, statuses_count: 55, created_at: new Date()}}, 
+            {text:"jotain2", user: { name: "b", screen_name: "g", location: "r", followers_count: 5, statuses_count: 55, created_at: new Date()}}, 
+            {text:"jotain3", user: { name: "c", screen_name: "h", location: "t", followers_count: 5, statuses_count: 55, created_at: new Date()}}
+        ]});
     });
 
 }

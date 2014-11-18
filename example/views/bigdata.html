@@ -1,5 +1,43 @@
 <div class="row">
     <div class="medium-12 medium-centered columns">
-    <h1>Big Data</h1>
+        <h1>Big Data</h1>
+        <form method="post">
+            <div class="row">
+                <div class="medium-8 medium-centered columns">
+                    <label>Hakusana
+                        <input type="text" name="job" ng-model="q" />
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="medium-8 medium-centered columns">
+                    <button type="submit" ng-click="search(q)">Etsi</button>
+                </div>
+            </div>
+        </form>
+        <table style="width:60%;">
+            <thead>
+                <tr>
+                    <th>Text</th>
+                    <th>Name</th>
+                    <th>Screen name</th>
+                    <th>Location</th>
+                    <th>Followers Count</th>
+                    <th>Statuses Count</th>
+                    <th>Created At</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="data in datas">
+                    <td>{{data.text}}</td>
+                    <td>{{data.user.name}}</td>
+                    <td>{{data.user.screen_name}}</td>
+                    <td>{{data.user.location}}</td>
+                    <td>{{data.user.followers_count}}</td>
+                    <td>{{data.user.statuses_count}}</td>
+                    <td>{{data.user.created_at}}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>
