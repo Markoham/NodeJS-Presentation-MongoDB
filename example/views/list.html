@@ -4,14 +4,16 @@
         <table style="width:60%;">
             <thead>
                 <tr>
-                    <th style="width:50%;">Nimi</th>
-                    <th style="width:50%;">Ammatti</th>
+                    <th>Nimi</th>
+                    <th>Ammatti</th>
+                    <th style="width:1em">Poista</th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="person in persons">
                     <td>{{person.name}}</td>
                     <td>{{person.job}}</td>
+                    <td><button type="button" ng-click="delete(person)">Poisto</button></td>
                 </tr>
             </tbody>
         </table>

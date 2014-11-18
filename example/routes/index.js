@@ -37,11 +37,15 @@ module.exports = function(app)
     
     app.post('/api/person', function(req, res)
     {
+        console.log("add");
+        console.log(req.body);
         res.json({success: true});
     });
     
     app.delete('/api/person', function(req, res)
     {
+        console.log("delete");
+        console.log(req.body);
         res.json({success: true});
     });
 
