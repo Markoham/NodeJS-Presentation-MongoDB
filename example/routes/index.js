@@ -29,10 +29,28 @@ module.exports = function(app)
     {
 		res.render('bigdata');
 	});
+    
+    app.get('/api/person', function(req, res)
+    {
+        res.json({persons: [ {name:"pertti", job:"myyjä"}, {name:"antti", job:"koodari"}, {name:"sanni", job:"arkkitehti"} ]});
+    });
+    
+    app.post('/api/person', function(req, res)
+    {
+        console.log("add");
+        console.log(req.body);
+        res.json({success: true});
+    });
+    
+    app.delete('/api/person', function(req, res)
+    {
+        console.log("delete");
+        console.log(req.body);
+        res.json({success: true});
+    });
 
-	app.get('/search/:keyword', function(req, res)
+	app.get('/api/search/:keyword', function(req, res)
 	{
-
-})
+    });
 
 }
