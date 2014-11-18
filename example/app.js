@@ -7,9 +7,7 @@ var favicon         = require('static-favicon');
 var morgan          = require('morgan');
 var cookieParser    = require('cookie-parser');
 var bodyParser      = require('body-parser');
-var session         = require('express-session');
 var ejs             = require('ejs');
-var flash           = require('connect-flash');
 
 // Database && Passport
 mongoose.connect('mongodb://localhost/crm');
@@ -26,18 +24,14 @@ app.set('views', __dirname + '/views');
 
 app.set('view cache', false);
 // Sessions
-app.use(session({ secret: 'ilovescotchscotchyscotchscotch' }));
 
 // Passport
-app.use(passport.initialize());
-app.use(passport.session());
-app.use(flash());
 
 // public files
 app.use(express.static(path.join(__dirname, 'public')));
 
 // ROUTES
-require('./routes')(app, passport);
+require('./routes')(app);
 
 
 // =======================================================
