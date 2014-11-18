@@ -2,14 +2,13 @@ var mongoose = require('mongoose');
 
 
 var dataSchema = mongoose.Schema({
-  waId	        : String,
-    access          : Boolean,
-    admin           : Boolean,
-    username        : String,
-    name            : {
-        familyName  : String,
-        givenName   : String
+    text                : String,
+    user                : {
+        name            : String,
+        screen_name     : String,
+        location        : String,
+        followers_count : Number,
+        statuses_count  : Number,
+        created_at      : Date
     }
 });
-
-module.exports = mongoose.model('data', dataSchema);

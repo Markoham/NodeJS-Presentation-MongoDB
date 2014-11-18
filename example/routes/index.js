@@ -1,5 +1,5 @@
-var Data = require('./models/data');
-var Person = require('./models/user');
+var Data = require('../models/data');
+var Person = require('../models/person');
 
 module.exports = function(app)
 {
@@ -27,49 +27,67 @@ module.exports = function(app)
 	});
 
     app.get('/view/bigdata', function(req, res)
-
     {
 		res.render('bigdata');
 	});
 
     app.get('/api/person', function(req, res)
     {
-        res.json({persons: [ {name:"pertti", job:"myyjä"}, {name:"antti", job:"koodari"}, {name:"sanni", job:"arkkitehti"} ]});
+        Person.find({}, function(req, persons)
+        {
+            if(err)
+                console.log(err);
+           return res.json({persons: persons}); 
+        });
     });
 
     app.post('/api/person', function(req, res)
     {
         console.log("add");
         console.log(req.body);
-        res.json({success: true});
+        var person = new Person();
+        person._id = req.body._id;
+        person.name = req.body.name;
+        person.job = req.body.job;
+        
+        person.save(function(err)
+        {
+            if(err)
+                return res.json({success: false});
+            return res.json({success: true});
+        });
+        
     });
 
     app.delete('/api/person', function(req, res)
     {
         console.log("delete");
         console.log(req.body);
-        res.json({success: true});
+        
+        var person = new Person();
+        person._id = req.body._id;
+        person.name = req.body.name;
+        person.job = req.body.job;
+        
+        Person.remove(person, function(err)
+        {
+            if(err)
+                return res.json({success: false});
+            
+            return res.json({success: true}); 
+        });
+        
     });
 
 	app.get('/api/search/:keyword', function(req, res)
-
-		Data.aggregate([ { $match : {text: { $regex: 'hello' , $options: 'g'} }}], function (err, result) {
-    	if(err) {
-      	console.log(err);
-        return;
-      }
-      	console.log(result);
-				return result;
+    {
+        Data.aggregate( [{ $match : {text: { $regex: 'hello' , $options: 'g'} }}], function (err, result) {
+            if(err) {
+                console.log(err);
+                return;
+            }
+            console.log(result);
+            return res.json({data: result});
+        });
     });
-}
-	{
-        console.log("big data");
-        console.log(req.body);
-        res.json({data: [
-            {text:"jotain1", user: { name: "a", screen_name: "f", location: "e", followers_count: 5, statuses_count: 55, created_at: new Date()}}, 
-            {text:"jotain2", user: { name: "b", screen_name: "g", location: "r", followers_count: 5, statuses_count: 55, created_at: new Date()}}, 
-            {text:"jotain3", user: { name: "c", screen_name: "h", location: "t", followers_count: 5, statuses_count: 55, created_at: new Date()}}
-        ]});
-    });
-
 }
