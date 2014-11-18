@@ -1,7 +1,7 @@
 <div class="row">
     <div class="medium-12 medium-centered columns">
         <h1>Big Data</h1>
-        <form method="post">
+        <form method="post" ng-submit="search(q)">
             <div class="row">
                 <div class="medium-8 medium-centered columns">
                     <label>Hakusana
@@ -11,7 +11,7 @@
             </div>
             <div class="row">
                 <div class="medium-8 medium-centered columns">
-                    <button type="submit" ng-click="search(q)">Etsi</button>
+                    <button type="submit">Etsi</button>
                 </div>
             </div>
         </form>

@@ -6,4 +6,4 @@ var personSchema = mongoose.Schema({
     job             : String
 });
 
-module.exports = mongoose.model('person', personSchema);
+module.exports = mongoose.model('persons', personSchema);
