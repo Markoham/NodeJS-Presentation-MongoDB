@@ -73,10 +73,19 @@ Person.remove({_id: id}, callback);</code></pre>
                 <h2>Aggregate-sovelluskehys</h2>
                 <div class="panel radius">
                     <i class="fa fa-angle-right"></i>db.tweets.aggregate([ { $match : {text: { $regex: 'hello' , $options: 'g'} }},{ $group: { _id: null, count: { $sum: 1 } } } ])<br />
+                    { "_id" : null, "count" : 4 } <br />
 
 <i class="fa fa-angle-right"></i>db.tweets.aggregate([ { $match : {text: { $regex: 'hello' , $options: 'g'} }},{ $project : { text : 1 } } ])<br />
-
+{ "_id" : ObjectId("54748cc2795cfd8c1177e76c"), "text" : "your favorite hello &amp; your hardest goodbye" }<br />
+{ "_id" : ObjectId("54748cb4795cfd8c1177d916"), "text" : "@Ambrosesomide  hello sir.\nOnce she has remarried I can advice him to move on and 4get about her. Destiny can't be change. Kudos to you all" }<br />
+{ "_id" : ObjectId("54748cbd795cfd8c1177e0f9"), "text" : "Back at bonas means goodbye Dutch masters &amp; hello white owls" }<br />
+{ "_id" : ObjectId("54748cc7795cfd8c1177efbe"), "text" : "@kylertssss hello yat" }<br />
+                    
 <i class="fa fa-angle-right"></i>db.tweets.aggregate([ { $match : {text: { $regex: 'hello' , $options: 'g'} }},{ $project : { text : 1, "user.name": 1 } } ])<br />
+{ "_id" : ObjectId("54748cc2795cfd8c1177e76c"), "text" : "your favorite hello &amp; your hardest goodbye", "user" : { "name" : "♏ OG Bobby Johnson ♏" } }<br />
+{ "_id" : ObjectId("54748cb4795cfd8c1177d916"), "text" : "@Ambrosesomide  hello sir.\nOnce she has remarried I can advice him to move on and 4get about her. Destiny can't be change. Kudos to you all", "user" : { "name" : "Olabode jamiu abiola" } }<br />
+{ "_id" : ObjectId("54748cbd795cfd8c1177e0f9"), "text" : "Back at bonas means goodbye Dutch masters &amp; hello white owls", "user" : { "name" : "Dan O'Leary" } }<br />
+{ "_id" : ObjectId("54748cc7795cfd8c1177efbe"), "text" : "@kylertssss hello yat", "user" : { "name" : "abcde" } }<br />
                 </div>
             </div>
         </div>
