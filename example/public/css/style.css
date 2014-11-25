@@ -66,3 +66,20 @@ input[role="required"], input[role="required"]:focus
 {
     color: #fff;
 }
+
+div.panel > i.fa
+{
+    margin-right: 0.5em;
+}
+
+div.panel
+{
+    background-color: #23241F;
+    color: #fff;
+}
+
+code
+{
+    border: 0; !import
+    background-color: inherit; !import
+}

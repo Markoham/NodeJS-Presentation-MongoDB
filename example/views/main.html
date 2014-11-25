@@ -1,9 +1,87 @@
 <div class="row">
     <div class="medium-12 medium-centered columns">
-    <h1>Etusivu</h1>
-    <ul>
-      <li>MongoDB asennus</li>
-      <li>Käyttäjän luominen</li>
-      <li>Tiedon lisääminen kantaan</li>
+        <h1>Etusivu</h1>
+        <div class="row">
+            <div class="medium-12 medium-centered columns">
+                <h2>MongoDB-asennus</h2>
+                <div class="panel radius"><i class="fa fa-usd"></i>apt-get install mongodb</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="medium-12 medium-centered columns">
+                <h2>Käyttäjän luominen</h2>
+                <div class="panel radius"><i class="fa fa-angle-right"></i>db.addUser( { user: "kayttaja2",pwd: "sala2",roles: [ "readWrite" ]})</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="medium-12 medium-centered columns">
+                <h2>Tiedon lisääminen kantaan</h2>
+                <div class="panel radius">
+                    <i class="fa fa-angle-right"></i>db.persons.insert({name: "Antte", job: "Java koodari"})<br />
+                    <i class="fa fa-usd"></i>mongoimport --db &lt;database&gt; --collection &lt;collection&gt --type json --file &lt;filename&gt --upsert
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="medium-12 medium-centered columns">
+                <h2>mongoose-asennus</h2>
+                <div class="panel radius"><i class="fa fa-usd"></i>npm install mongoose --save</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="medium-12 medium-centered columns">
+                <h2>Schema</h2>
+                <div class="panel radius"><pre><code>var mongoose = require('mongoose');
+
+var personSchema = mongoose.Schema({
+    name	        : String,
+    job             : String
+});
+
+module.exports = mongoose.model('persons', personSchema);</code></pre>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="medium-12 medium-centered columns">
+                <h2>Tiedon käsittely kannasta</h2>
+                <div class="panel radius"><pre><code>var Person = require('./models/person');
+                
+// Lisääminen
+var person = new Person();
+person.name = 'Antte';
+person.job = 'Java koodari';
+person.save(callback);
+
+// Monen tiedon hakeminen
+Person.find({job: 'Java koodari'}, callback);
+
+// Yhden tiedon hakeminen
+Person.findOne({name: 'Antte'}, callback);
+
+// Tiedon päivittäminen
+Person.update({name: 'Antte'}, { $set: { job: 'Kahvin keittäjä' } }, callback);
+
+// Yhden tiedon hakeminen
+Person.remove({_id: id}, callback);</code></pre>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="medium-12 medium-centered columns">
+                <h2>Aggregate-sovelluskehys</h2>
+                <div class="panel radius">
+                    <i class="fa fa-angle-right"></i>db.tweets.aggregate([ { $match : {text: { $regex: 'hello' , $options: 'g'} }},{ $group: { _id: null, count: { $sum: 1 } } } ])<br />
+
+<i class="fa fa-angle-right"></i>db.tweets.aggregate([ { $match : {text: { $regex: 'hello' , $options: 'g'} }},{ $project : { text : 1 } } ])<br />
+
+<i class="fa fa-angle-right"></i>db.tweets.aggregate([ { $match : {text: { $regex: 'hello' , $options: 'g'} }},{ $project : { text : 1, "user.name": 1 } } ])<br />
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>

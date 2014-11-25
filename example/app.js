@@ -10,7 +10,7 @@ var bodyParser      = require('body-parser');
 var ejs             = require('ejs');
 
 // Database && Passport
-mongoose.connect('mongodb://kayttaja2:sala2@localhost:27017/data');
+mongoose.connect('mongodb://localhost:27017/data');
 /*
 var dbUrl = 'mongodb://kayttaja2:sala2@localhost:27017/data';
 var connection = mongoose.createConnection(dbUrl);
